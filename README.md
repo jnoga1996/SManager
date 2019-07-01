@@ -1,0 +1,2 @@
+# SManager
+Engineering degree project
