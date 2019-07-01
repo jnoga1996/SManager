@@ -4,10 +4,10 @@ use db;
 
 create table STUDENTS (
 	id int auto_increment,
-    first_name nvarchar(256) not null,
-    last_name nvarchar(256) not null,
-    faculty nvarchar(256) not null,
-    current_year int not null,
+	first_name nvarchar(256) not null,
+	last_name nvarchar(256) not null,
+	faculty nvarchar(256) not null,
+	current_year int not null,
     
     primary key (id)
 );
@@ -46,16 +46,31 @@ create table ASSIGNMENTS_SOLUTIONS (
     foreign key (assignment_id) references ASSIGNMENTS(id),
     foreign key (solution_id) references SOLUTIONS(id)
 ); 
-/* Many to many -> student can have many 
-* solutions to the same problem e.g 
-* after changing sth we want old versions to be available
-*/
+
 create table COURSES (
 	id int auto_increment,
     title nvarchar(512) not null,
     ects int not null,
     
     primary key(id)
+);
+
+create table GROUPS (
+	id int auto_increment,
+    course_id int,
+    teacher_id int,
+    
+    primary key(id),
+    foreign key(course_id) references COURSES(id),
+    foreign key(teacher_id) references TEACHERS(id)
+);
+
+create table GROUPS_STUDENTS (
+	student_id int,
+    group_id int,
+    
+    foreign key(student_id) references STUDENTS(id),
+    foreign key(group_id) references GROUPS(id)
 );
 
 create table COURSES_TEACHERS (
