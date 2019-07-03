@@ -1,6 +1,6 @@
-drop database if exists db;
-create database db;
-use db;
+drop database if exists smanager_db;
+create database smanager_db;
+use smanager_db;
 
 create table STUDENTS (
 	id int auto_increment,
