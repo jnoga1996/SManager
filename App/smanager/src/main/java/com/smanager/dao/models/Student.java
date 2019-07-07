@@ -5,6 +5,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Entity
 @Table(name = "STUDENTS")
@@ -26,7 +27,17 @@ public class Student {
     @Range(min = 0, max = 5)
     private int currentYear;
 
+    @OneToMany(mappedBy = "student")
+    private Set<Solution> solutions;
+
     public Student() {};
+
+    public Student(String firstName, String lastName, String faculty, int currentYear) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.faculty  = faculty;
+        this.currentYear = currentYear;
+    }
 
     public Long getId() {
         return id;
@@ -66,5 +77,19 @@ public class Student {
 
     public void setCurrentYear(int currentYear) {
         this.currentYear = currentYear;
+    }
+
+    public Set<Solution> getSolutions() {
+        return solutions;
+    }
+
+    public void setSolutions(Set<Solution> solutions) {
+        this.solutions = solutions;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + getFirstName() + " " + getLastName()
+                + ", faculty: " + getFaculty() + ", year: " + getCurrentYear();
     }
 }
