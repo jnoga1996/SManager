@@ -11,6 +11,7 @@ import java.util.Set;
 @Table(name = "STUDENTS")
 @EntityListeners(AuditingEntityListener.class)
 public class Student {
+    @Column(name = "student_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
