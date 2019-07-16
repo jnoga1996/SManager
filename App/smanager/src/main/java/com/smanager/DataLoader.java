@@ -24,18 +24,18 @@ public class DataLoader implements ApplicationRunner {
     private AssignmentRepository assignmentRepository;
     private SolutionRepository solutionRepository;
     private AssignmentSolutionRepository assignmentSolutionRepository;
-    private EntityManager entityManager;
+    private CourseRepository courseRepository;
 
     @Autowired
     public DataLoader(StudentRepository studentRepository, TeacherRepository teacherRepository, AssignmentRepository assignmentRepository,
                       SolutionRepository solutionRepository, AssignmentSolutionRepository assignmentSolutionRepository,
-                      EntityManager entityManager) {
+                      CourseRepository courseRepository) {
         this.studentRepository = studentRepository;
         this.teacherRepository = teacherRepository;
         this.assignmentRepository = assignmentRepository;
         this.solutionRepository = solutionRepository;
         this.assignmentSolutionRepository = assignmentSolutionRepository;
-        this.entityManager = entityManager;
+        this.courseRepository = courseRepository;
     }
 
     @Override
@@ -46,6 +46,7 @@ public class DataLoader implements ApplicationRunner {
         initializeAssignments();
         initializeSolutions();
         initializeAssignmentSolutions();
+        initializeCourses();
     }
 
     private void initializeStudents() {
@@ -103,6 +104,16 @@ public class DataLoader implements ApplicationRunner {
         });
 
         assignmentSolutionRepository.saveAll(assignmentSolutions);
+    }
+
+    private void initializeCourses() {
+        List<Course> courses = Arrays.asList(new Course[] {
+                new Course("Analiza matematyczna 1", 5),
+                new Course("Podstawy programowania", 3),
+                new Course("Matematyka dyskretna", 4)
+        });
+
+        courseRepository.saveAll(courses);
     }
 
     private AssignmentSolution createAssignmentSolution(Long assignmentId, Long solutionId) {
