@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "COURSES")
 public class Course {
+    @Column(name = "course_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

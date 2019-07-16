@@ -25,17 +25,19 @@ public class DataLoader implements ApplicationRunner {
     private SolutionRepository solutionRepository;
     private AssignmentSolutionRepository assignmentSolutionRepository;
     private CourseRepository courseRepository;
+    private GroupRepository groupRepository;
 
     @Autowired
     public DataLoader(StudentRepository studentRepository, TeacherRepository teacherRepository, AssignmentRepository assignmentRepository,
                       SolutionRepository solutionRepository, AssignmentSolutionRepository assignmentSolutionRepository,
-                      CourseRepository courseRepository) {
+                      CourseRepository courseRepository, GroupRepository groupRepository) {
         this.studentRepository = studentRepository;
         this.teacherRepository = teacherRepository;
         this.assignmentRepository = assignmentRepository;
         this.solutionRepository = solutionRepository;
         this.assignmentSolutionRepository = assignmentSolutionRepository;
         this.courseRepository = courseRepository;
+        this.groupRepository = groupRepository;
     }
 
     @Override
@@ -47,6 +49,7 @@ public class DataLoader implements ApplicationRunner {
         initializeSolutions();
         initializeAssignmentSolutions();
         initializeCourses();
+        initializeGroups();
     }
 
     private void initializeStudents() {
@@ -116,6 +119,18 @@ public class DataLoader implements ApplicationRunner {
         courseRepository.saveAll(courses);
     }
 
+    private void initializeGroups() {
+        List<Group> groups = Arrays.asList(new Group[] {
+                createGroup(1L, 1L),
+                createGroup(1L, 2L),
+                createGroup(2L, 1L),
+                createGroup(2L, 2L),
+                createGroup(3L, 2L)
+        });
+
+        groupRepository.saveAll(groups);
+    }
+
     private AssignmentSolution createAssignmentSolution(Long assignmentId, Long solutionId) {
         Assignment assignment = assignmentRepository.getOne(assignmentId);
         Solution solution = solutionRepository.getOne(solutionId);
@@ -127,5 +142,12 @@ public class DataLoader implements ApplicationRunner {
         Student student = studentRepository.getOne(studentId);
 
         return new Solution(student, content);
+    }
+
+    private Group createGroup(Long courseId, Long teacherId) {
+        Course course = courseRepository.getOne(courseId);
+        Teacher teacher = teacherRepository.getOne(teacherId);
+
+        return new Group(course, teacher);
     }
 }

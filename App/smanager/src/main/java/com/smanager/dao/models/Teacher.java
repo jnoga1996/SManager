@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 @Table(name = "TEACHERS")
 @EntityListeners(AuditingEntityListener.class)
 public class Teacher {
+    @Column(name = "teacher_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
