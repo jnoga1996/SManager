@@ -18,10 +18,7 @@ public class StudentController {
 
     @Autowired
     private TeacherRepository teacherRepository;
-
-    @Autowired
-    private AssignmentSolutionRepository assignmentSolutionRepository;
-
+    
     @Autowired
     private SolutionRepository solutionRepository;
 
@@ -34,7 +31,6 @@ public class StudentController {
         List<Teacher> teachers = teacherRepository.findAll();
         List<Solution> solutions = solutionRepository.findAll();
         List<Assignment> assignments = assignmentRepository.findAll();
-        List<AssignmentSolution> assignmentSolutions = assignmentSolutionRepository.findAllAssignmentSolutions();
 
         model.addAttribute("students", students);
         return "StudentIndex";
