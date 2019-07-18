@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -18,7 +17,7 @@ public class StudentController {
 
     @Autowired
     private TeacherRepository teacherRepository;
-    
+
     @Autowired
     private SolutionRepository solutionRepository;
 
@@ -33,6 +32,6 @@ public class StudentController {
         List<Assignment> assignments = assignmentRepository.findAll();
 
         model.addAttribute("students", students);
-        return "StudentIndex";
+        return "student_index";
     }
 }
