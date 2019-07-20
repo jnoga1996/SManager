@@ -7,7 +7,8 @@
 <body>
     <ul>
         <th:block th:each="as : ${assignmentSolutions}">
-            <li th:utext="${as}">..</li>
+            <li th:utext="${as.getAssignment()}">..</li>
+            <li th:utext="${as.getSolution()}">..</li>
         </th:block>
     </ul>
 </body>
