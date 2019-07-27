@@ -1,6 +1,6 @@
 package com.smanager.controllers;
 
-import com.smanager.dao.repositories.AssignmentSolutionRepository;
+import com.smanager.dao.repositories.AssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/AssignmentSolution")
-public class AssignmentSolutionController {
+@RequestMapping("/Assignment")
+public class AssignmentController {
 
     @Autowired
-    private AssignmentSolutionRepository assignmentSolutionRepository;
+    private AssignmentRepository assignmentRepository;
 
     @GetMapping("Index")
     public String index(Model model) {
-        model.addAttribute("assignmentSolutions", assignmentSolutionRepository.findAll());
-        return "assignmentSolution_index";
+        model.addAttribute("assignments", assignmentRepository.findAll());
+        return "assignment_index";
     }
 }

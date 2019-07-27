@@ -50,4 +50,9 @@ public class AssignmentSolution {
         this.solution = solution;
     }
 
+    @Override
+    public String toString() {
+        return "AssignmentSolution -> Id: " + getId() + ", assignmentId: " + getAssignment().getId() + ", solutionId: " + getSolution().getId();
+    }
+
 }

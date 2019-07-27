@@ -85,4 +85,16 @@ public class Assignment {
     public void setStudent(Student student) {
         this.student = student;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Assignment: " + getId() + ", title: " + getTitle() + ", content: " + getContent() + "\n");
+        for (AssignmentSolution as : getSolutions()) {
+            sb.append(as.toString());
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
 }
