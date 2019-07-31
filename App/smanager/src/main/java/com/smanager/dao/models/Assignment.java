@@ -89,7 +89,7 @@ public class Assignment {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Assignment: " + getId() + ", title: " + getTitle() + ", content: " + getContent() + "\n");
+        sb.append("Id: " + getId() + ", title: " + getTitle() + ", content: " + getContent() + "\n");
         for (AssignmentSolution as : getSolutions()) {
             sb.append(as.toString());
             sb.append("\n");
