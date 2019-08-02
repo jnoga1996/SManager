@@ -13,3 +13,4 @@ spring.datasource.username = USER
 spring.datasource.password = PASSWORD
 ```
 6) Run application (Shift + F10)
+7) Application should be available under http://localhost:8080/
