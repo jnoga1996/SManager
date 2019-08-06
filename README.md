@@ -1,3 +1,6 @@
+# UPDATE
+Project migrated to https://github.com/jnoga1996/StudentManager
+
 # SManager
 Engineering degree project
 
